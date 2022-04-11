@@ -1,0 +1,43 @@
+1. Primero, carguemos los archivos de sonido en la función preload (precargar).
+var cannonExplosion;
+
+2. Agregar el sonido de explosión dentro del archivo sketch.js
+
+¿Que falta? 
+
+function _________() {
+  if (keyCode === DOWN_ARROW) {
+    ___________
+    balls[balls.length - 1].shoot();
+  }
+}
+
+3. Cuando el juego termina, el jugador debería tener otra oportunidad de volverlo a jugar. 
+Para esto, escribiremos la función gameOver() que mostrará un mensaje con la imagen del barco y el botón de volver a cargar.
+
+3.1 Declara la variable para GameOver (fin del juego) dentro de sketch.js y dale un valor de false. ¿Porque false?
+
+
+3.2 Ahora, creemos la ventana de mensaje. Vamos a utilizar sweet alert, que es un reemplazo para la ventana alert() de JavaScript.
+SweetAlert son los cuadros de mensaje personalizados de JS.
+
+
+¿Para que estamos creando esta funcion?
+
+function gameOver() {
+  swal(
+    {
+      title: `¡Fin del juego!`,
+      text: "¡Gracias por jugar!",
+      imageUrl:
+        "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png",
+      imageSize: "150x150",
+      confirmButtonText: "Jugar de nuevo"
+    },
+    function(isConfirm) {
+      if (isConfirm) {
+        location.reload();
+      }
+    }
+  );
+}
