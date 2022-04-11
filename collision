@@ -1,0 +1,134 @@
+1.  Eliminar el barco y la bala  cuando colisionen. 
+Queremos que el barco vaya desapareciendo lentamente y queremos reproducir nuestra animación antes de que el barco desaparezca. 
+Para esto, podemos usar la función llamada setTimeout().Esta función ejecuta el código dentro de ella después de un cierto intervalo de tiempo.
+
+a) remove(index) {
+    this.animation = brokenBoatAnimation;
+    this.speed = 0.05;
+    this.width = 300;
+    this.height = 300;
+    this.isBroken = true;
+    setTimeout(() => {
+      Matter.World.remove(world, boats[index].body);
+      boats.splice(index, 1);
+    }, 2000);
+  }
+  
+  b) remove() {
+    this.animation = brokenBoatAnimation;
+    this.speed = 0.05;
+    this.width = 300;
+    this.height = 300;
+    this.isBroken = true;
+  
+      Matter.World.remove(world, boats[index].body);
+      boats.splice(index, 1);
+    }, 2000);
+  }
+  
+  c) remove(index) {
+    this.animation = BoatAnimation;
+    this.speed = 0.05;
+    this.width = 300;
+    this.height = 300;
+    this.isBroken = true;
+    setTimeout(() => {
+      Matter.World.remove(boats[i].body);
+      boats.splice(index, 1);
+    };
+  }
+  
+  
+  
+  2. Agregar bucles para obtener todos los barcos y las balas de cañón en la función draw().
+  
+  2.1 Crear el bucle 
+  
+ a)cfor (var i = 0; i < balls.length; i++) {
+    showCannonBalls(balls[i], i);
+    
+       for (var i = 0; i < boats.length; i++) {
+           
+    }
+  }
+  
+ 
+ b)for (var i = 0; i < balls.length; i++) {
+    showCannonBalls(balls[i], i);
+    
+       for (var j = 0; j < balls.length; j++) {
+           
+    }
+  }
+ 
+ 
+ 
+ 
+ c) for (var i = 0; i < balls.length; i++) {
+    showCannonBalls(balls[i], i);
+    
+       for (var j = 0; j < boats.length; j++) {
+           
+    }
+  }
+  
+  
+  2.2 Ahora, necesitamos obtener todas las balas y los barcos de la matriz.
+Así que, verificaremos si el valor dentro de las matrices de balas y los barcos no esten indefinidas usando la condición if.
+
+a) for (var i = 0; i < balls.length; i++) {
+    showCannonBalls(balls[i], i);
+    for (var j = 0; j < boats.length; j++) {
+      if (balls[i] !== undefined && boats[j] !== undefined) {
+        }
+    }
+  }
+  
+  b) for (var i = 0; i < balls.length; i++) {
+    showCannonBalls(balls[i], i);
+    for (var i = 0; i < boats.length; i++) {
+      if (balls[]== undefined && boats[] == undefined) {
+        }
+    }
+  }
+  
+  c) for (var i = 0; i < balls.length; i++) {
+    showCannonBalls(balls[i], i);
+    for (var j = 0; j < boats.length; j++) {
+      if (balls[j] !== undefined && balls[j] !== undefined) {
+        }
+    }
+  }
+  
+  2.3 Antes de que revisemos la colisión, escribamos la función remove() para eliminar a los barcos del mundo y de la matriz de barcos.
+  
+  ¿Dónde debe colocarse? 
+  
+  Matter.World.remove(world, balls[i].body);
+  balls.splice(i, 1);
+  
+  2.4 Ahora, checaremos si la colisión está sucediendo entre la bala y el barco y si están chocando, los eliminaremos del mundo y la matriz.
+  Pueden encontrar y explicar la parte que se agrego al código 
+  
+  for (var i = 0; i < balls.length; i++) {
+    showCannonBalls(balls[i], i);
+    for (var j = 0; j < boats.length; j++) {
+      if (balls[i] !== undefined && boats[j] !== undefined) {
+        var collision = Matter.SAT.collides(balls[i].body, boats[j].body);
+        if (collision.collided) {
+          if (!boats[j].isBroken && !balls[i].isSink) {
+            score += 5;
+            boats[j].remove(j);
+            j--;
+          }
+
+          Matter.World.remove(world, balls[i].body);
+          balls.splice(i, 1);
+          i--;
+        }
+      }
+    }
+  }
+  
+  
+  
